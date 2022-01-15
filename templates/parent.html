@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon  -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{url_for('static', filename='CCW_F/apple-touch-icon.png')}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ url_for('static', filename='CCW_F/favicon-32x32.png')}}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for('static', filename='CCW_F/favicon-16x16.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='CCW_F/site.webmanifest') }}"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Self CSS  -->
+    <link
+      href="{{ url_for('static', filename='/style.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Jquery CDN  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Self js  -->
+    <script src="{{ url_for('static', filename='/script.js') }}"></script>
+
+    <!-- Fontawsome  -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <header class="container-fluid bg-dk-coffee">
+      <nav class="navbar navbar-expand-lg bg-dk-coffee">
+        <div class="container-fluid bg-dk-coffee">
+          <a class="navbar-brand" href="{{ url_for('home') }}">
+            <img
+              src="static/coffe_cafe_work_logo.svg"
+              alt="Coffee Cafe Work logo"
+              width="40px"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+          {% if context['page'] == 'home' %}
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle Navigation"
+          >
+            <i class="fas fa-bars clr-lighter"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto me-auto bg-lightest search-form">
+              <input
+                type="search"
+                class="form-control me2 search-input"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn search-btn bg-lighter" type="submit">
+                Search
+              </button>
+            </form>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  href="{{ url_for('add_screen') }}"
+                  class="nav-link clr-lighter cafe-map-location"
+                  ><i class="fas fa-plus fa-1x"></i> Add new cafe</a
+                >
+              </li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+    <div
+      class="filter-box p-4 shadow d-inline-block bg-dk-coffee position-absolute filter-btn d-none"
+    >
+      <form class="filter-box-form clr-lightest">
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="wifi_check"
+            id="wifi_check"
+          />
+          <label for="wifi_check" class="form-check-label"
+            >Wifi available</label
+          >
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="can_call"
+            id="can_call"
+          />
+          <label for="can_call" class="form-check-label">Can take call</label>
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="socket_check"
+            id="socket_check"
+          />
+          <label for="socket_check" class="form-check-label"
+            >Socket available</label
+          >
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="washroom_check"
+            id="washroom_check"
+          />
+          <label for="washroom_check" class="form-check-label"
+            >Washroom available</label
+          >
+        </span>
+
+        <button
+          class="btn btn-lg mt-3 bg-lighter d-block clr-darkest ms-auto me-auto"
+        >
+          Apply filter
+        </button>
+      </form>
+    </div>
+
+    <button
+      type="button"
+      class="filter-btn position-absolute rounded-circle bg-lightest btn btn-lg d-none"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Filter result"
+    >
+      <i class="fas fa-filter clr-dakest"></i>
+    </button>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

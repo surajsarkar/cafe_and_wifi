@@ -1,0 +1,126 @@
+{% extends 'parent.html' %} {% block title %}Add new cafe{% endblock %} {% block
+content %}
+
+<div class="container-fluid bg-lighter p-5">
+  <form action="" method="post" class="ms-auto me-auto w-50">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="cafe_name"
+        class="form-control"
+        id="floating-input"
+        placeholder="Cafe Name"
+      />
+      <label for="cafe_name" class="floatingInput">Cafe Name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="map_url"
+        class="form-control"
+        id="floating-input"
+        placeholder="Map Url"
+      />
+      <label for="map_url" class="floatingInput">Map Url</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="img_url"
+        id="floating-input"
+        class="form-control"
+        placeholder="Image Url"
+      />
+      <label for="img_url" class="floatingInput">Image Url</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="location"
+        id=""
+        class="form-control"
+        placeholder="Location"
+      />
+      <label for="location" class="floatingInput">Location</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        name="price"
+        id="floating-input"
+        class="form-control"
+        placeholder="Coffee price"
+      />
+      <label for="price" class="floatingInput">Coffee price</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <select name="seats" id="floatingSelect" class="form-select">
+        <option selected value="1">0-10</option>
+        <option value="2">10-20</option>
+        <option value="3">20-30</option>
+        <option value="4">30-40</option>
+        <option value="5">40-50</option>
+        <option value="6">50+</option>
+      </select>
+      <label for="floatingSelect">Seats</label>
+    </div>
+
+    <div class="d-flex flex-md-row flex-column justify-content-between">
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="has_wifi"
+          id="has_wifi"
+          class="form-check-input"
+        />
+
+        <label for="has_wifi" class="form-check-label">Wifi available</label>
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="has_socket"
+          id="has_socket"
+          class="form-check-input"
+        />
+        <label for="has_socket" class="form-check-label"
+          >Sockets available</label
+        >
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="has_toilet"
+          id="has_toilet"
+          class="form-check-input"
+        />
+        <label for="has_toilet" class="form-check-label"
+          >Washroom available</label
+        >
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="call_allowed"
+          id="call_allowed"
+          class="form-check-input"
+        />
+        <label for="call_allowed" class="form-check-label">Call allowed</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-lg bg-darkest clr-lightest w-50">
+      Add Cafe
+    </button>
+  </form>
+</div>
+
+{% endblock %}

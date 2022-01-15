@@ -1,0 +1,164 @@
+
+{% extends "parent.html" %}
+{% block title %}Cafe Coffee Work {% endblock %}
+
+{% block content %}
+<div class="container-fluid cafe-display-board bg-lighter py-2">
+
+  {% for cafe in context['all_cafe'] %}
+    <div class="cafe-desc m-2 ms-auto me-auto">
+      <img class="cafe-img"
+        src="{{ cafe.img_url }}"
+        alt="{{ cafe.name }} picture"
+      />
+      <article class="cafe-info">
+        <div class="container d-flex flex-column align-items-center">
+          <h4 class="cafe-name">{{ cafe.name }}</h4>
+          <span class="clr-darker"><i class="fas fa-map-marker-alt"></i>  <span class="text-info">{{ cafe.location }}</span></span>
+
+          <div class="price-tag container d-flex flex-row justify-content-around">
+            <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="coffee price">
+              <i class="fas fa-mug-hot clr-darker"></i>
+
+            <span class="text-info"
+              >{{ cafe.coffee_price }}</span>
+            </span>
+
+            <span class="clr-darker" data-bs-toggle="tooltip" data-bs-placement="bottom" title="No of seats">
+              <i class="fas fa-chair"></i> <span class="text-info">{{ cafe.seats }}</span>
+            </span>
+            
+          </div>
+        </div>
+
+        <hr />
+
+        <div
+          class="container d-flex flex-row text-black-50 justify-content-evenly align-items-center"
+        >
+        
+        {% if cafe.has_wifi %}
+          <i
+            class="fas fa-wifi clr-lighter"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="wifi available"
+          ></i>
+          {% endif %}
+
+          {% if cafe.has_sockets %}
+          <i
+            class="fas fa-plug clr-lighter"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="socket available"
+          ></i>
+          {% endif %}
+
+          {% if cafe.can_take_calls %}
+          <i
+            class="fas fa-phone-volume clr-lighter"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="calling allowed"
+          ></i>
+          {% endif %}
+
+          {% if cafe.has_toilet %}
+          <i
+            class="fas fa-toilet clr-lighter"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="washroom available"
+          ></i>
+          {% endif %}
+
+          <a
+          
+            href="{{ cafe.map_url }}"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="See on map"
+            ><i class="fas fa-map-marked-alt clr-lighter cafe-map-location"></i></i
+          ></a>
+        </div>
+      </article>
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+<div onclick="removeShadow()" class="w-100 h-100 shadow-screen position-absolute d-none"></div>
+
+  <div
+      class="filter-box p-4 shadow d-inline-block bg-dk-coffee position-absolute filter-btn d-none"
+    >
+      <form class="filter-box-form clr-lightest" onsubmit="removeShadow()">
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="wifi_check"
+            id="wifi_check"
+          />
+          <label for="wifi_check" class="form-check-label"
+            >Wifi available</label
+          >
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="can_call"
+            id="can_call"
+          />
+          <label for="can_call" class="form-check-label">Can take call</label>
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="socket_check"
+            id="socket_check"
+          />
+          <label for="socket_check" class="form-check-label"
+            >Socket available</label
+          >
+        </span>
+        <hr class="ms-auto me-auto" />
+        <span>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="washroom_check"
+            id="washroom_check"
+          />
+          <label for="washroom_check" class="form-check-label"
+            >Washroom available</label
+          >
+        </span>
+
+        <button
+        type="submit"
+          class="btn btn-lg mt-3 bg-lighter d-block clr-darkest ms-auto me-auto"
+        >
+          Apply filter
+        </button>
+      </form>
+    </div>
+
+
+    <div
+    onclick="filtermenu()"
+    type="button"
+    class="filter-btn position-absolute rounded-circle bg-lightest btn btn-lg d-none"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title="Filter result"
+  >
+    <i class="fas fa-filter clr-dakest"></i>
+  </div>
+{% endblock %}
